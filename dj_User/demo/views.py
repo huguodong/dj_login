@@ -8,7 +8,7 @@ from demo import PbMenthod as Pb
 import json
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-import datetime
+import re
 
 
 # Create your views here.
@@ -21,7 +21,7 @@ def index(request):
 
 # 注销
 def logout(request):
-    auth.logout(request)#注销
+    auth.logout(request)  # 注销
     return render(request, 'logout.html', )
 
 
@@ -52,13 +52,15 @@ def register(request):
         username = request.POST['username'].encode('utf8')
         password = request.POST['password'].encode('utf8')
         email = request.POST['email'].encode('utf8')
-        if len(username) < 4 and len(username) > 16 and len(password) < 6:#判断合法输入
+        str = r'^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+){0,4}$'
+        match = re.match(str, 'aaaaa@qq.com')
+        if len(username) < 4 and len(username) > 16 and len(password) < 6 and match is None:  # 判断合法输入
             state = 0;
             return HttpResponse(json.dumps({"state": state}))
         if username != None and password != None and email != None:
-            isReg = TB_User.objects.filter(UserName=username).count() #检查重复
+            isReg = TB_User.objects.filter(UserName=username).count()  # 检查重复
             if isReg == 0:
-                #注册
+                # 注册
                 user = TB_User()
                 user.UID = Pb.CreateID()
                 user.UserName = username
@@ -67,9 +69,9 @@ def register(request):
                 user.save()
                 user = auth.authenticate(username=username, password=password)
                 auth.login(request, user)
-                state = 1;#注册成功
+                state = 1;  # 注册成功
                 return HttpResponse(json.dumps({"state": state}))
             else:
-                state = 2;#用户已存在
+                state = 2;  # 用户已存在
                 return HttpResponse(json.dumps({"state": state}))
         return render(request, 'login.html')
