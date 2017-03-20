@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="8906f37e-f10c-42ee-83a9-f2025c1d4989" name="centos" url="http://172.16.72.67">
+      <webServer id="efa4c198-382a-4808-a080-0b1bc96feb75" name="aa" url="http://172.16.72.67">
         <fileTransfer host="172.16.72.67" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />

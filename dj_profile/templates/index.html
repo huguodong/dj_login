@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>这个是主页</title>
+</head>
+{% load staticfiles %}
+<script type="text/javascript" src="{% static "static/js/jquery-1.9.0.min.js" %}"></script>
+<script type="text/javascript" src="{% static "static/js/csrf.js" %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#zx').click(function () {
+            location.href = '/logout/'
+        });
+    });
+
+</script>
+<body>
+这是主页
+</body>
+</html>

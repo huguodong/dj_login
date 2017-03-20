@@ -73,10 +73,13 @@ $(document).ready(function () {
                 data = JSON.parse(data);
                 if (data["state"] == 1) {
                     alert("登录成功！")
-                    window.location.href = '/index/';
+                    window.location.href = '/car/';
                 }
                 if (data["state"] == 2) {
                     alert("密码错误！")
+                }
+                if (data["state"] == 3) {
+                    alert("权限不足！")
                 }
                 if (data["state"] == 0) {
                     alert("非法输入！")
@@ -149,7 +152,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 data = JSON.parse(data);
-                  if (data["state"] == 0) {
+                if (data["state"] == 0) {
                     alert("非法输入！")
                 }
                 if (data["state"] == 1) {
